@@ -1,6 +1,6 @@
 /* eslint-disable no-constant-condition */
 import test from "ava";
-import { fromSignature } from "../src/signature";
+import { fromSerialized } from "../src/serialized";
 
 test("types should work", async (t) => {
   const signature = {
@@ -12,7 +12,7 @@ test("types should work", async (t) => {
     test5: "string[]"
   } as const;
 
-  const fn = fromSignature(
+  const fn = fromSerialized(
     signature,
     signature,
     ({ test1, test2, test3, test5 }) => {

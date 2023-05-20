@@ -1,11 +1,11 @@
-# `fn-sig`
+# `serialized-fn`
 
 Strictly typed functions from serializable objects.
 
 ### Example
 
 ```ts
-const fn = fromSignature(
+const fn = fromSerialized(
   {
     "test1": "string",
     "test2": "number",

@@ -1,2 +1,2 @@
-export * from "./signature";
+export * from "./serialized";
 export * from "./types";

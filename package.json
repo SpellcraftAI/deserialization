@@ -1,5 +1,5 @@
 {
-  "name": "fn-sig",
+  "name": "serialized-fn",
   "version": "0.1.0",
   "license": "MIT",
   "type": "module",

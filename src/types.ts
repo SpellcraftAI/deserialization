@@ -2,7 +2,7 @@
 /**
  * All supported primitive types.
  */
-interface PrimitiveTypes {
+export interface PrimitiveTypes {
   "string": string
   "number": number
   "boolean": boolean
@@ -11,7 +11,7 @@ interface PrimitiveTypes {
   "undefined": undefined
   "null": null
   "void": void
-}
+};
 
 /**
  * A type map for arrays of all supported primitive types.
@@ -50,24 +50,20 @@ export type Primitive = keyof Primitives;
  * @example
  * "undefined"
  */
-export type Signature = Primitive | {
-  [key: string]: Primitive | Signature
-};
+export type Serialized = Primitive | { [key: string]: Primitive | Serialized };
 
 /**
  * Deserialize inferred string literal types (e.g. `"string[]"`) into actual
  * types (e.g. `Array<string>`).
  */
-export type Deserialize<T extends Signature> = (
-  T extends Primitive
-    ? Primitives[T]
+export type Deserialize<S extends Serialized> = (
+  S extends Primitive
+    ? Primitives[S]
     : {
-        [K in keyof T]: (
-          T[K] extends Primitive
-            ? Primitives[T[K]]
-            : T[K] extends Signature
-              ? Deserialize<T[K]>
-              : never
+        [K in keyof S]: (
+          S[K] extends Serialized
+            ? Deserialize<S[K]>
+            : never
         )
       }
   );
