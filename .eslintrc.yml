@@ -13,6 +13,8 @@ parserOptions:
     - tsconfig.tests.json
 
 rules:
+  quotes: off
+  semi: off
   "@typescript-eslint/explicit-function-return-type":
     - off
   "@typescript-eslint/quotes":

@@ -1,35 +1,31 @@
-# `tsmodule` library
+# `fn-sig`
 
-This is a [`tsmodule`](https://github.com/tsmodule/tsmodule) library. By
-default, it is assumed to be a Node program, but this can be adjusted via the
-`platform` field in package.json.
+Strictly typed functions from serializable objects.
 
-### Develop
+### Example
 
-Rebuild on changes with `tsmodule dev` or the `pnpm dev` script:
+```ts
+const fn = fromSignature(
+  {
+    "test1": "string",
+    "test2": "number",
+    "test3": {
+      "test4": "boolean",
+    },
+    "test5": "string[]",
+  },
+  "void",
+  ({ test1, test2, test3, test5 }) => {
+    console.log(test1, test2, test3.test4, test5);
+  },
+);
 
-```bash
-pnpm dev
-# calls `tsmodule dev`
+fn({
+  test1: "Hello",
+  test2: 42,
+  test3: {
+    test4: true,
+  },
+  test5: ["a", "b", "c"],
+});
 ```
-
-### Export and publish
-
-To export your component library, use `tsmodule build` or the `pnpm build`
-script:
-
-```bash
-pnpm build
-# calls `tsmodule build`
-```
-
-You can then publish to NPM:
-
-```bash
-pnpm publish
-```
-
-#### Importing from your library
-
-All index exports, e.g. `src/example/index.tsx` will be available downstream
-via `import ... from "my-library/example"`.
