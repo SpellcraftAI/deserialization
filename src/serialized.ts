@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import type { Deserialize, Serialized } from "./types";
 
 /**
