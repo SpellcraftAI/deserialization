@@ -1,5 +1,6 @@
 {
-  "name": "serialized-fn",
+  "name": "deserialization",
+  "description": "Strict TS types from JSON objects.",
   "version": "0.1.0",
   "license": "MIT",
   "type": "module",

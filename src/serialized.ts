@@ -1,13 +1,25 @@
+/**
+ * @fileoverview
+ *
+ * These are type-guards that infer types from serialized strings. The functions
+ * will get compiled away at runtime as they are of form (x) => x.
+ */
 import type { Deserialize, Serialized } from "./types";
 
 /**
- * This is a sort of inference type guard for a function whose args and return
- * signatures are specified via the given objects.
- *
- * Calling this function is redundant at runtime and should get compiled away,
- * but is required to infer the types of the args and return value.
+ * Deserializes the given object signature.
  */
-export const fromSerialized = <Args extends Serialized, Returns extends Serialized>(
+export const obj = <Shape extends Serialized>(
+  _shape: Shape,
+  _obj: Deserialize<Shape>
+) => {
+  return _obj;
+};
+
+/**
+ * Deserializes the given function signature.
+ */
+export const fn = <Args extends Serialized, Returns extends Serialized>(
   _args: Args,
   _returns: Returns,
   fn: (args: Deserialize<Args>) => Deserialize<Returns>
